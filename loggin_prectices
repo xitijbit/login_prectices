@@ -1,0 +1,43 @@
+auth_users = ["kshitij", "killshot", "spiderman"]
+
+def new_user_req():
+        new_user_name =input("\nEnter Your Name:")
+        global auth_users
+        if(new_user_name in auth_users):
+            print("The User Already Exists!")
+            new_user_req()
+        auth_users += [new_user_name]
+        print("\nYou Are Now A Authorised user Please login again!")
+        login()
+        
+def ask():
+    print("\n1.Enter '1' to Register \n2.Enter '2' to exit")
+    choice = int(input("Enter Your choice:"))
+    if(choice==1):
+       new_user_req()
+    elif(choice==2):
+        return 0
+    else:
+        print("\nEnter a valid option!!")
+        ask()
+def remove_user():
+    del_user = input("Enter the name of the user to delete:")
+    if(del_user in auth_users):
+        auth_users.remove(del_user)
+        print("\n"+ del_user +" is no longer authorised user!")
+    else:
+        print("Please Enter a registered user\n")
+        remove_user()
+    
+
+def login():    
+    user = input("Please Enter Your Name:")
+    if(user in auth_users):
+        print("*" * 10 +"You are a authorised user"+ "*" * 10)
+        print(auth_users)
+        remove_user()
+    else:
+        print("You Are not authorised!")
+        ask()
+
+        
